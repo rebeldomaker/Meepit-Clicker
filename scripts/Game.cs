@@ -3,6 +3,16 @@ using System;
 
 public partial class Game : Control
 {
+	private const string SavePath = "user://savegame.json";
+
+	private void SaveData()
+	{
+		var data = new Godot.Collections.Dictionary
+		{
+			{ "meepits", _meepitCount }
+		};
+	}
+
 /*If you want a variable to be editable inside the Godot Editor Inspector panel
  without exposing raw fields, 
  add [Export] above a public property
@@ -20,10 +30,10 @@ public partial class Game : Control
    
    3. "Field" vs "Property"
    In C#, there are two main ways to create variables inside a class:
-       Field (Raw variable): private double meepits = 0; (A basic variable that just holds a value in memory).
-       Property: public double Meepits { get; set; } = 0; 
-       (A variable that uses { get; set; } 
-       to safely control how other scripts read (get) or change (set) its value).
+	   Field (Raw variable): private double meepits = 0; (A basic variable that just holds a value in memory).
+	   Property: public double Meepits { get; set; } = 0; 
+	   (A variable that uses { get; set; } 
+	   to safely control how other scripts read (get) or change (set) its value).
    
    4. [Export]
    [Export] is a special tag you place directly above a variable. It tells Godot: 
@@ -34,26 +44,26 @@ public partial class Game : Control
    If you want to give the player 100 Meepits per click for testing, 
    you just type 100 in that box instead of opening Rider to rewrite your code */
 
-    [Export] // An attribute that tells Godot to display this property in the Inspector panel when you select the node attached to this script.
-    public double MeepitsPerClick { get; set; } = 1; // { get; set; }: C# syntax required for properties. It grants Godot permission to read (get) and write (set) the value behind the scenes.
-    // public: Exposes the property so Godot's engine can read and update it.
+	[Export] // An attribute that tells Godot to display this property in the Inspector panel when you select the node attached to this script.
+	public double MeepitsPerClick { get; set; } = 1; // { get; set; }: C# syntax required for properties. It grants Godot permission to read (get) and write (set) the value behind the scenes.
+	// public: Exposes the property so Godot's engine can read and update it.
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-    }
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-    }
-    
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+	
 // Modifiers in C#
 // PRIVATE -- Only inside the current class (Game.cs).
 // PUBLIC -- From any other C# script in your project.
 
 // Tracks total Meepits
-    private double _meepitCount = 0; 
+	private double _meepitCount = 0; 
 // private is an access modifier in C# that restricts variable access
 // so only code inside that specific class (Game) can read or change it.
 // Key reasons to use private:
@@ -61,24 +71,24 @@ public partial class Game : Control
 // Code Cleanliness: Keeps internal game state hidden from other parts of your project that don't need to touch it.
 // Controlled Logic: Forces changes to go through dedicated methods (like an AddMeepits(double amount) function) where you can check rules or trigger UI updates at the same time.
 
-    // Base amount gained per click
-    private double _meepitsPerClick = 1;
+	// Base amount gained per click
+	private double _meepitsPerClick = 1;
 
-    // Passive amount gained per second from upgrades
-    private double _meepitsPerSecond = 0;
-    
-    [Signal]
-    public delegate void MeepitsChangedEventHandler(double newCount);
-    
-    // MeepitsChanged(newCount: float)
-    // 
-    private void _on_click_button_button_down()
-    {
-        _meepitCount += _meepitsPerClick;
-    
-        // Broadcasts the new total to any connected listeners/UI
-        EmitSignal(SignalName.MeepitsChanged, _meepitCount); // the underscore (_) is a C# naming convention used to show that a variable is a private field declared at the class level.
-        // it instantly tells you that it is a class-wide private variable, rather than a temporary variable created inside a function.
-        // this naming convention is to also prevent conflicts.
-    }
+	// Passive amount gained per second from upgrades
+	private double _meepitsPerSecond = 0;
+	
+	[Signal]
+	public delegate void MeepitsChangedEventHandler(double newCount);
+	
+	// MeepitsChanged(newCount: float)
+	// 
+	private void _on_click_button_button_down()
+	{
+		_meepitCount += _meepitsPerClick;
+	
+		// Broadcasts the new total to any connected listeners/UI
+		EmitSignal(SignalName.MeepitsChanged, _meepitCount); // the underscore (_) is a C# naming convention used to show that a variable is a private field declared at the class level.
+		// it instantly tells you that it is a class-wide private variable, rather than a temporary variable created inside a function.
+		// this naming convention is to also prevent conflicts.
+	}
 }
