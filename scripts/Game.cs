@@ -3,15 +3,11 @@ using System;
 
 public partial class Game : Control
 {
-	private const string SavePath = "user://savegame.json";
+	private const string SavePath = "user://userdata.save";
 
-	private void SaveData()
-	{
-		var data = new Godot.Collections.Dictionary
-		{
-			{ "meepits", _meepitCount }
-		};
-	}
+	// Auto-save timer variables
+	private double _saveTimer = 0;
+	private const double SaveInterval = 15.0; // Automatically saves every 15 seconds
 
 /*If you want a variable to be editable inside the Godot Editor Inspector panel
  without exposing raw fields, 
@@ -51,11 +47,28 @@ public partial class Game : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		LoadData();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// Accumulates delta time to save automatically every 15 seconds
+		_saveTimer += delta;
+		if (_saveTimer >= SaveInterval)
+		{
+			_saveTimer = 0;
+			SaveData();
+		}
+	}
+
+	// Engine notification handler to detect window closing
+	public override void _Notification(int what)
+	{
+		if ((long)what == NotificationWMCloseRequest)
+		{
+			SaveData();
+		}
 	}
 	
 // Modifiers in C#
@@ -79,6 +92,48 @@ public partial class Game : Control
 	
 	[Signal]
 	public delegate void MeepitsChangedEventHandler(double newCount);
+
+	private void SaveData()
+	{
+		var data = new Godot.Collections.Dictionary
+		{
+			{ "meepits", _meepitCount }
+		};
+
+		using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
+		if (file != null)
+		{
+			file.StoreVar(data);
+		}
+	}
+
+	private void LoadData()
+	{
+		if (FileAccess.FileExists(SavePath))
+		{
+			using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Read);
+			if (file != null)
+			{
+				var data = file.GetVar();
+
+				// Equivalent to GDScript: if typeof(data) == TYPE_DICTIONARY
+				if (data.VariantType == Variant.Type.Dictionary)
+				{
+					var dict = data.AsGodotDictionary();
+					
+					// Equivalent to GDScript: cookies = data.get("cookies", 0)
+					_meepitCount = dict.ContainsKey("meepits") ? dict["meepits"].AsDouble() : 0;
+					
+					// Refresh UI label upon load
+					EmitSignal(SignalName.MeepitsChanged, _meepitCount);
+				}
+			}
+		}
+		else
+		{
+			SaveData();
+		}
+	}
 	
 	// MeepitsChanged(newCount: float)
 	// 

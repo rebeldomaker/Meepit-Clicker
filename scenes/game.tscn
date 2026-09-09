@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://dbww7618pyky1" path="res://scripts/Game.cs" id="1_yqjtg"]
 [ext_resource type="Script" uid="uid://lmegkmnhmj4v" path="res://scripts/Stats.cs" id="3_lnu2h"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="Game" type="Control" unique_id=274030352]
 layout_mode = 3
 anchors_preset = 15
@@ -13,7 +16,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yqjtg")
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=875784636]
+[node name="LeftPanel" type="Panel" parent="." unique_id=1519193597]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 953.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lnu2h")
+
+[node name="CenterContainer" type="CenterContainer" parent="LeftPanel" unique_id=875784636]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,27 +32,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ClickButton" type="TextureButton" parent="CenterContainer" unique_id=1719283033]
+[node name="ClickButton" type="TextureButton" parent="LeftPanel/CenterContainer" unique_id=1719283033]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("1_uwrxv")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Stats" type="VBoxContainer" parent="." unique_id=1849910499]
+[node name="Stats" type="VBoxContainer" parent="LeftPanel" unique_id=1849910499]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 23.0
+offset_bottom = 55.0
 grow_horizontal = 2
 script = ExtResource("3_lnu2h")
 
-[node name="MeepitsLabel" type="Label" parent="Stats" unique_id=1297826312]
+[node name="MeepitsLabel" type="Label" parent="LeftPanel/Stats" unique_id=1297826312]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
 theme_override_font_sizes/font_size = 40
 text = "0 Meepit'd"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="MeepitsChanged" from="." to="Stats" method="_on_game_meepits_changed"]
-[connection signal="button_down" from="CenterContainer/ClickButton" to="." method="_on_click_button_button_down"]
+[connection signal="MeepitsChanged" from="." to="LeftPanel/Stats" method="_on_game_meepits_changed"]
+[connection signal="button_down" from="LeftPanel/CenterContainer/ClickButton" to="." method="_on_click_button_button_down"]
