@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ck51imvexyii2" path="res://assets/Meepits/Hall_petpet6.webp" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dbww7618pyky1" path="res://scripts/Game.cs" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://lmegkmnhmj4v" path="res://scripts/Stats.cs" id="3_lnu2h"]
 
 [node name="Game" type="Control" unique_id=274030352]
 layout_mode = 3
@@ -20,23 +21,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="CenterContainer" unique_id=1719283033]
+[node name="ClickButton" type="TextureButton" parent="CenterContainer" unique_id=1719283033]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("1_uwrxv")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1849910499]
+[node name="Stats" type="VBoxContainer" parent="." unique_id=1849910499]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
+script = ExtResource("3_lnu2h")
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1297826312]
+[node name="MeepitsLabel" type="Label" parent="Stats" unique_id=1297826312]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "0 exp"
+text = "0 Meepit'd"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="MeepitsChanged" from="." to="Stats" method="_on_game_meepits_changed"]
+[connection signal="button_down" from="CenterContainer/ClickButton" to="." method="_on_click_button_button_down"]

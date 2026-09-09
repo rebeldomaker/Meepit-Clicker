@@ -66,4 +66,19 @@ public partial class Game : Control
 
     // Passive amount gained per second from upgrades
     private double _meepitsPerSecond = 0;
+    
+    [Signal]
+    public delegate void MeepitsChangedEventHandler(double newCount);
+    
+    // MeepitsChanged(newCount: float)
+    // 
+    private void _on_click_button_button_down()
+    {
+        _meepitCount += _meepitsPerClick;
+    
+        // Broadcasts the new total to any connected listeners/UI
+        EmitSignal(SignalName.MeepitsChanged, _meepitCount); // the underscore (_) is a C# naming convention used to show that a variable is a private field declared at the class level.
+        // it instantly tells you that it is a class-wide private variable, rather than a temporary variable created inside a function.
+        // this naming convention is to also prevent conflicts.
+    }
 }
