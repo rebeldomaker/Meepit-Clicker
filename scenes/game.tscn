@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cdnfj0t0sm3hc"]
 
 [ext_resource type="Texture2D" uid="uid://ck51imvexyii2" path="res://assets/Meepits/Hall_petpet6.webp" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://dbww7618pyky1" path="res://scripts/Game.cs" id="1_yqjtg"]
 
 [node name="Game" type="Control" unique_id=274030352]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_yqjtg")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=875784636]
 layout_mode = 1
