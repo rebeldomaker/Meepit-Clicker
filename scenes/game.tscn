@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cdnfj0t0sm3hc"]
+
+[ext_resource type="Texture2D" uid="uid://ck51imvexyii2" path="res://assets/Meepits/Hall_petpet6.webp" id="1_uwrxv"]
+
+[node name="Game" type="Control" unique_id=274030352]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=875784636]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer" unique_id=1719283033]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("1_uwrxv")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1849910499]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1297826312]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0 exp"
+horizontal_alignment = 1
+vertical_alignment = 1

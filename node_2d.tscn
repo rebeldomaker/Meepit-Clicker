@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://cdnfj0t0sm3hc"]
-
-[node name="Node2D" type="Node2D" unique_id=330300361]
-
-[node name="Game" type="Control" parent="." unique_id=1966286243]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
