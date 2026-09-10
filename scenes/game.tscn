@@ -7,6 +7,13 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkgw6"]
 bg_color = Color(0.45115232, 0.5544123, 0.85388947, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.62482554, 0.5229322, 0.8945106, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
 bg_color = Color(1, 1, 1, 1)
 
@@ -52,10 +59,30 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -283.0
+offset_left = -353.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nkgw6")
+
+[node name="Label" type="Label" parent="RightPanel" unique_id=932986696]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.5
+offset_top = 20.0
+offset_right = 150.5
+offset_bottom = 99.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.99215686, 0.6039216, 0.79607844, 1)
+theme_override_colors/font_outline_color = Color(0.6392157, 0.36862746, 0.50980395, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_lbhrr")
+text = "Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="LeftPanel" type="Panel" parent="." unique_id=1519193597]
 layout_mode = 1
@@ -77,16 +104,6 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="CenterContainer" type="CenterContainer" parent="LeftPanel/MarginContainer" unique_id=875784636]
-layout_mode = 2
-
-[node name="ClickButton" type="TextureButton" parent="LeftPanel/MarginContainer/CenterContainer" unique_id=1719283033]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("1_uwrxv")
-ignore_texture_size = true
-stretch_mode = 0
-
 [node name="Stats" type="VBoxContainer" parent="LeftPanel/MarginContainer" unique_id=1849910499]
 layout_mode = 2
 script = ExtResource("3_lnu2h")
@@ -104,12 +121,24 @@ vertical_alignment = 1
 
 [node name="MeepitsLabel2" type="Label" parent="LeftPanel/MarginContainer/Stats" unique_id=1533384443]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+theme_override_colors/font_color = Color(0.9653327, 0.94105107, 0, 1)
+theme_override_colors/font_outline_color = Color(0.4812311, 0.30493563, 9.62615e-08, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = SubResource("FontFile_iywne")
 theme_override_font_sizes/font_size = 25
 text = "0 Per Second"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="LeftPanel/MarginContainer" unique_id=875784636]
+layout_mode = 2
+
+[node name="ClickButton" type="TextureButton" parent="LeftPanel/MarginContainer/CenterContainer" unique_id=1719283033]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("1_uwrxv")
+ignore_texture_size = true
+stretch_mode = 0
 
 [connection signal="MeepitsChanged" from="." to="LeftPanel/MarginContainer/Stats" method="_on_game_meepits_changed"]
 [connection signal="button_down" from="LeftPanel/MarginContainer/CenterContainer/ClickButton" to="." method="_on_click_button_button_down"]
