@@ -4,8 +4,37 @@
 [ext_resource type="Script" uid="uid://dbww7618pyky1" path="res://scripts/Game.cs" id="1_yqjtg"]
 [ext_resource type="Script" uid="uid://lmegkmnhmj4v" path="res://scripts/Stats.cs" id="3_lnu2h"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkgw6"]
+bg_color = Color(0.45115232, 0.5544123, 0.85388947, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="FontFile" id="FontFile_iywne"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
 
 [node name="Game" type="Control" unique_id=274030352]
 layout_mode = 3
@@ -16,44 +45,71 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yqjtg")
 
+[node name="RightPanel" type="Panel" parent="." unique_id=1574647531]
+top_level = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -283.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nkgw6")
+
 [node name="LeftPanel" type="Panel" parent="." unique_id=1519193597]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 953.0
+offset_right = 973.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lnu2h")
 
-[node name="CenterContainer" type="CenterContainer" parent="LeftPanel" unique_id=875784636]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel" unique_id=1931338760]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
-[node name="ClickButton" type="TextureButton" parent="LeftPanel/CenterContainer" unique_id=1719283033]
+[node name="CenterContainer" type="CenterContainer" parent="LeftPanel/MarginContainer" unique_id=875784636]
+layout_mode = 2
+
+[node name="ClickButton" type="TextureButton" parent="LeftPanel/MarginContainer/CenterContainer" unique_id=1719283033]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("1_uwrxv")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Stats" type="VBoxContainer" parent="LeftPanel" unique_id=1849910499]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 55.0
-grow_horizontal = 2
+[node name="Stats" type="VBoxContainer" parent="LeftPanel/MarginContainer" unique_id=1849910499]
+layout_mode = 2
 script = ExtResource("3_lnu2h")
 
-[node name="MeepitsLabel" type="Label" parent="LeftPanel/Stats" unique_id=1297826312]
+[node name="MeepitsLabel" type="Label" parent="LeftPanel/MarginContainer/Stats" unique_id=1297826312]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+theme_override_colors/font_color = Color(0.88575804, 0.8534525, 3.85046e-07, 1)
+theme_override_colors/font_shadow_color = Color(0.7560115, 0.35506508, 1.92523e-07, 0)
+theme_override_colors/font_outline_color = Color(0.57838726, 0.4148083, 1.92523e-07, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
-text = "0 Meepit'd"
+text = "0 Meepits"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="MeepitsChanged" from="." to="LeftPanel/Stats" method="_on_game_meepits_changed"]
-[connection signal="button_down" from="LeftPanel/CenterContainer/ClickButton" to="." method="_on_click_button_button_down"]
+[node name="MeepitsLabel2" type="Label" parent="LeftPanel/MarginContainer/Stats" unique_id=1533384443]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+theme_override_fonts/font = SubResource("FontFile_iywne")
+theme_override_font_sizes/font_size = 25
+text = "0 Per Second"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="MeepitsChanged" from="." to="LeftPanel/MarginContainer/Stats" method="_on_game_meepits_changed"]
+[connection signal="button_down" from="LeftPanel/MarginContainer/CenterContainer/ClickButton" to="." method="_on_click_button_button_down"]
