@@ -208,14 +208,15 @@ offset_bottom = 56.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-theme_override_colors/font_color = Color(0.38431373, 0.44705883, 0.6431373, 1)
-theme_override_colors/font_outline_color = Color(0.26666668, 0.2784314, 0.3529412, 1)
-theme_override_constants/outline_size = 5
+theme_override_colors/font_color = Color(0.9254902, 0.79607844, 0.40784314, 1)
+theme_override_colors/font_outline_color = Color(0.7372549, 0.60784316, 0.29411766, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 30
 text = "+0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="MeepitClicked" from="." to="LeftPanel/MarginContainer" method="_on_game_meepit_clicked"]
 [connection signal="MeepitsChanged" from="." to="LeftPanel/MarginContainer/Stats" method="_on_game_meepits_changed"]
 [connection signal="button_down" from="LeftPanel/MarginContainer/CenterContainer/ClickButton" to="." method="_on_click_button_button_down"]
 [connection signal="button_down" from="LeftPanel/MarginContainer/CenterContainer/ClickButton" to="LeftPanel/MarginContainer" method="_on_click_button_button_down"]

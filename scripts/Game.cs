@@ -47,28 +47,29 @@ public partial class Game : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		LoadData();
+	   LoadData();
+	   EmitSignal(SignalName.MeepitsChanged, _meepitCount);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		// Accumulates delta time to save automatically every 15 seconds
-		_saveTimer += delta;
-		if (_saveTimer >= SaveInterval)
-		{
-			_saveTimer = 0;
-			SaveData();
-		}
+	   // Accumulates delta time to save automatically every 15 seconds
+	   _saveTimer += delta;
+	   if (_saveTimer >= SaveInterval)
+	   {
+		  _saveTimer = 0;
+		  SaveData();
+	   }
 	}
 
 	// Engine notification handler to detect window closing
 	public override void _Notification(int what)
 	{
-		if ((long)what == NotificationWMCloseRequest)
-		{
-			SaveData();
-		}
+	   if ((long)what == NotificationWMCloseRequest)
+	   {
+		  SaveData();
+	   }
 	}
 	
 // Modifiers in C#
@@ -93,57 +94,61 @@ public partial class Game : Control
 	[Signal]
 	public delegate void MeepitsChangedEventHandler(double newCount);
 
+	// Equivalent to "signal cookie_clicked"
+	[Signal]
+	public delegate void MeepitClickedEventHandler(double amount);
+
 	private void SaveData()
 	{
-		var data = new Godot.Collections.Dictionary
-		{
-			{ "meepits", _meepitCount }
-		};
+	   var data = new Godot.Collections.Dictionary
+	   {
+		  { "meepits", _meepitCount }
+	   };
 
-		using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
-		if (file != null)
-		{
-			file.StoreVar(data);
-		}
+	   using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
+	   if (file != null)
+	   {
+		  file.StoreVar(data);
+	   }
 	}
 
 	private void LoadData()
 	{
-		if (FileAccess.FileExists(SavePath))
-		{
-			using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Read);
-			if (file != null)
-			{
-				var data = file.GetVar();
+	   if (FileAccess.FileExists(SavePath))
+	   {
+		  using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Read);
+		  if (file != null)
+		  {
+			 var data = file.GetVar();
 
-				// Equivalent to GDScript: if typeof(data) == TYPE_DICTIONARY
-				if (data.VariantType == Variant.Type.Dictionary)
-				{
-					var dict = data.AsGodotDictionary();
-					
-					// Equivalent to GDScript: cookies = data.get("cookies", 0)
-					_meepitCount = dict.ContainsKey("meepits") ? dict["meepits"].AsDouble() : 0;
-					
-					// Refresh UI label upon load
-					EmitSignal(SignalName.MeepitsChanged, _meepitCount);
-				}
-			}
-		}
-		else
-		{
-			SaveData();
-		}
+			 // Equivalent to GDScript: if typeof(data) == TYPE_DICTIONARY
+			 if (data.VariantType == Variant.Type.Dictionary)
+			 {
+				var dict = data.AsGodotDictionary();
+				
+				// Equivalent to GDScript: cookies = data.get("cookies", 0)
+				_meepitCount = dict.ContainsKey("meepits") ? dict["meepits"].AsDouble() : 0;
+				
+				// Refresh UI label upon load
+				EmitSignal(SignalName.MeepitsChanged, _meepitCount);
+			 }
+		  }
+	   }
+	   else
+	   {
+		  SaveData();
+	   }
 	}
 	
 	// MeepitsChanged(newCount: float)
-	// 
 	private void _on_click_button_button_down()
 	{
-		_meepitCount += _meepitsPerClick;
+	   _meepitCount += _meepitsPerClick;
 	
-		// Broadcasts the new total to any connected listeners/UI
-		EmitSignal(SignalName.MeepitsChanged, _meepitCount); // the underscore (_) is a C# naming convention used to show that a variable is a private field declared at the class level.
-		// it instantly tells you that it is a class-wide private variable, rather than a temporary variable created inside a function.
-		// this naming convention is to also prevent conflicts.
+	   // Broadcasts the new total to any connected listeners/UI
+	   EmitSignal(SignalName.MeepitsChanged, _meepitCount);
+
+	   // Equivalent to "emit_signal("cookie_clicked", amount_per_click)"
+	   EmitSignal(SignalName.MeepitClicked, _meepitsPerClick);
 	}
 }
