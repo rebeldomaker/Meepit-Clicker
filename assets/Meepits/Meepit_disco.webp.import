@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgb7c07u20l02"
-path="res://.godot/imported/Meepit_ghost.webp-e372beefcccf43ae02327e6fbd82d6d7.ctex"
+uid="uid://dnuhcy3ttyy2p"
+path="res://.godot/imported/Meepit_disco.webp-d0ac7de167d61dfc3e8f1ae7dfd62a37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/meepits/Meepit_ghost.webp"
-dest_files=["res://.godot/imported/Meepit_ghost.webp-e372beefcccf43ae02327e6fbd82d6d7.ctex"]
+source_file="res://assets/Meepits/Meepit_disco.webp"
+dest_files=["res://.godot/imported/Meepit_disco.webp-d0ac7de167d61dfc3e8f1ae7dfd62a37.ctex"]
 
 [params]
 

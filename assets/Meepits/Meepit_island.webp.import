@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b84w3gk0ia8md"
-path="res://.godot/imported/Meepit_mutant.webp-4eb80e9d464d17747808e7eca9871c80.ctex"
+uid="uid://b2gpae4s2cb3"
+path="res://.godot/imported/Meepit_island.webp-1cd741f7b452bb64967227972c5166cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/meepits/Meepit_mutant.webp"
-dest_files=["res://.godot/imported/Meepit_mutant.webp-4eb80e9d464d17747808e7eca9871c80.ctex"]
+source_file="res://assets/Meepits/Meepit_island.webp"
+dest_files=["res://.godot/imported/Meepit_island.webp-1cd741f7b452bb64967227972c5166cc.ctex"]
 
 [params]
 

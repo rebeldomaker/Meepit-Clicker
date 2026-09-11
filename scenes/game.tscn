@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdnfj0t0sm3hc"]
 
-[ext_resource type="Texture2D" path="res://assets/Meepits/Hall_petpet6.webp" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://ck51imvexyii2" path="res://assets/Meepits/Hall_petpet6.webp" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dbww7618pyky1" path="res://scripts/Game.cs" id="1_yqjtg"]
 [ext_resource type="Script" uid="uid://bgbwfshoyxump" path="res://scripts/Animations.cs" id="2_lbhrr"]
 [ext_resource type="Script" uid="uid://lmegkmnhmj4v" path="res://scripts/Stats.cs" id="3_lnu2h"]
@@ -48,6 +48,43 @@ cache/0/25/0/descent = 0.0
 cache/0/25/0/underline_position = 0.0
 cache/0/25/0/underline_thickness = 0.0
 cache/0/25/0/scale = 1.0
+
+[sub_resource type="Animation" id="Animation_iywne"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_p57ef"]
+resource_name = "spin_background"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(9.333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u5sy4"]
+_data = {
+&"RESET": SubResource("Animation_iywne"),
+&"spin_background": SubResource("Animation_p57ef")
+}
 
 [node name="Game" type="Control" unique_id=274030352]
 layout_mode = 3
@@ -103,8 +140,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 137.0
-offset_top = -3.0
+offset_left = 162.0
+offset_top = 6.0
 offset_right = -165.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -157,8 +194,27 @@ layout_mode = 2
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("1_uwrxv")
-ignore_texture_size = true
 stretch_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftPanel" unique_id=1741807627]
+libraries/ = SubResource("AnimationLibrary_u5sy4")
+
+[node name="Indicators" type="Control" parent="LeftPanel" unique_id=2045282830]
+anchors_preset = 0
+offset_right = 55.0
+offset_bottom = 56.0
+
+[node name="Template" type="Label" parent="LeftPanel/Indicators" unique_id=2068362113]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.38431373, 0.44705883, 0.6431373, 1)
+theme_override_colors/font_outline_color = Color(0.26666668, 0.2784314, 0.3529412, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "+0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="MeepitsChanged" from="." to="LeftPanel/MarginContainer/Stats" method="_on_game_meepits_changed"]
 [connection signal="button_down" from="LeftPanel/MarginContainer/CenterContainer/ClickButton" to="." method="_on_click_button_button_down"]

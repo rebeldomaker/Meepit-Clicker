@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gwfmg6o6bybd"
-path="res://.godot/imported/Meepit_red.webp-b7ab2761cb492c2b53d8808f2a3b15c1.ctex"
+uid="uid://ip4amm3o0qay"
+path="res://.godot/imported/Meepit_tyrannian.webp-c53217ff15545c869fba776610d748e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/meepits/Meepit_red.webp"
-dest_files=["res://.godot/imported/Meepit_red.webp-b7ab2761cb492c2b53d8808f2a3b15c1.ctex"]
+source_file="res://assets/Meepits/Meepit_tyrannian.webp"
+dest_files=["res://.godot/imported/Meepit_tyrannian.webp-c53217ff15545c869fba776610d748e9.ctex"]
 
 [params]
 

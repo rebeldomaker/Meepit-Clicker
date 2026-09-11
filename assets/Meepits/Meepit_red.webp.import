@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cklqmcj38dsxn"
-path="res://.godot/imported/Meepit_snow.webp-41d3d0d2961440d2ec0ee50bba5b3a0f.ctex"
+uid="uid://gwfmg6o6bybd"
+path="res://.godot/imported/Meepit_red.webp-96fa97d9b286f8a47089745635ed2f11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/meepits/Meepit_snow.webp"
-dest_files=["res://.godot/imported/Meepit_snow.webp-41d3d0d2961440d2ec0ee50bba5b3a0f.ctex"]
+source_file="res://assets/Meepits/Meepit_red.webp"
+dest_files=["res://.godot/imported/Meepit_red.webp-96fa97d9b286f8a47089745635ed2f11.ctex"]
 
 [params]
 

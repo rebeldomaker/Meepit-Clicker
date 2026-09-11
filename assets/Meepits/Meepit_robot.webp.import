@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtac7rfdq7tmf"
-path="res://.godot/imported/Meepit_zombie.webp-87078a48dcf80d1c9764b04fa233f6fc.ctex"
+uid="uid://8ivymeraok8l"
+path="res://.godot/imported/Meepit_robot.webp-9f3931ecaf1366d0c9258e0c40e97933.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/meepits/Meepit_zombie.webp"
-dest_files=["res://.godot/imported/Meepit_zombie.webp-87078a48dcf80d1c9764b04fa233f6fc.ctex"]
+source_file="res://assets/Meepits/Meepit_robot.webp"
+dest_files=["res://.godot/imported/Meepit_robot.webp-9f3931ecaf1366d0c9258e0c40e97933.ctex"]
 
 [params]
 

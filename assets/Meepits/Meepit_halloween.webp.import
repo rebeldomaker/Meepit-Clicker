@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf4sn8j6hmvov"
-path="res://.godot/imported/Meepit_stealthy.webp-ce036c4ff17baa98c30a4bdbd5bc4d2c.ctex"
+uid="uid://dc8wusdysiot5"
+path="res://.godot/imported/Meepit_halloween.webp-276808a9702889d5d555013a9440db5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/meepits/Meepit_stealthy.webp"
-dest_files=["res://.godot/imported/Meepit_stealthy.webp-ce036c4ff17baa98c30a4bdbd5bc4d2c.ctex"]
+source_file="res://assets/Meepits/Meepit_halloween.webp"
+dest_files=["res://.godot/imported/Meepit_halloween.webp-276808a9702889d5d555013a9440db5a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccg1m6aydlhfr"
-path="res://.godot/imported/Meepit_faerie.webp-27c1b0a1dfc7004a5f18bcaf526b1be7.ctex"
+uid="uid://b7mqt8qfss5jw"
+path="res://.godot/imported/Meepit_white.webp-f2bdec439c18ebc9c3e7cd6971f796b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/meepits/Meepit_faerie.webp"
-dest_files=["res://.godot/imported/Meepit_faerie.webp-27c1b0a1dfc7004a5f18bcaf526b1be7.ctex"]
+source_file="res://assets/Meepits/Meepit_white.webp"
+dest_files=["res://.godot/imported/Meepit_white.webp-f2bdec439c18ebc9c3e7cd6971f796b4.ctex"]
 
 [params]
 
