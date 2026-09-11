@@ -1,19 +1,20 @@
 [gd_scene format=3 uid="uid://cdnfj0t0sm3hc"]
 
-[ext_resource type="Texture2D" uid="uid://ck51imvexyii2" path="res://assets/Meepits/Hall_petpet6.webp" id="1_uwrxv"]
+[ext_resource type="Texture2D" path="res://assets/Meepits/Hall_petpet6.webp" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dbww7618pyky1" path="res://scripts/Game.cs" id="1_yqjtg"]
 [ext_resource type="Script" uid="uid://bgbwfshoyxump" path="res://scripts/Animations.cs" id="2_lbhrr"]
 [ext_resource type="Script" uid="uid://lmegkmnhmj4v" path="res://scripts/Stats.cs" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://v7lf7i4en7kr" path="res://assets/sunburst.png" id="5_iywne"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkgw6"]
-bg_color = Color(0.45115232, 0.5544123, 0.85388947, 1)
+bg_color = Color(0.26666668, 0.2784314, 0.3529412, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbhrr"]
 content_margin_left = 20.0
 content_margin_top = 5.0
 content_margin_right = 20.0
 content_margin_bottom = 5.0
-bg_color = Color(0.62482554, 0.5229322, 0.8945106, 1)
+bg_color = Color(0.15686275, 0.16470589, 0.21176471, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -79,8 +80,8 @@ offset_top = 20.0
 offset_right = 150.5
 offset_bottom = 99.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.99215686, 0.6039216, 0.79607844, 1)
-theme_override_colors/font_outline_color = Color(0.6392157, 0.36862746, 0.50980395, 1)
+theme_override_colors/font_color = Color(0.6068285, 0.66235536, 0.82464254, 1)
+theme_override_colors/font_outline_color = Color(0.28551593, 0.2978847, 0.37608746, 1)
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_lbhrr")
@@ -96,6 +97,19 @@ anchor_bottom = 1.0
 offset_right = 973.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lnu2h")
+
+[node name="Background" type="TextureRect" parent="LeftPanel" unique_id=738177076]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 137.0
+offset_top = -3.0
+offset_right = -165.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_iywne")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel" unique_id=1931338760]
 layout_mode = 1
@@ -116,9 +130,9 @@ script = ExtResource("3_lnu2h")
 
 [node name="MeepitsLabel" type="Label" parent="LeftPanel/MarginContainer/Stats" unique_id=1297826312]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.88575804, 0.8534525, 3.85046e-07, 1)
+theme_override_colors/font_color = Color(0.94438183, 0.8165557, 0.42176887, 1)
 theme_override_colors/font_shadow_color = Color(0.7560115, 0.35506508, 1.92523e-07, 0)
-theme_override_colors/font_outline_color = Color(0.57838726, 0.4148083, 1.92523e-07, 1)
+theme_override_colors/font_outline_color = Color(0.70768225, 0.5464948, 0.16409615, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
 text = "0 Meepits"
@@ -127,8 +141,8 @@ vertical_alignment = 1
 
 [node name="MeepitsPerSecondLabel" type="Label" parent="LeftPanel/MarginContainer/Stats" unique_id=1533384443]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9653327, 0.94105107, 0, 1)
-theme_override_colors/font_outline_color = Color(0.4812311, 0.30493563, 9.62615e-08, 1)
+theme_override_colors/font_color = Color(0.898313, 0.841043, 0.3375634, 1)
+theme_override_colors/font_outline_color = Color(0.50017303, 0.36618072, 0.14781451, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = SubResource("FontFile_iywne")
 theme_override_font_sizes/font_size = 25
@@ -148,3 +162,5 @@ stretch_mode = 0
 
 [connection signal="MeepitsChanged" from="." to="LeftPanel/MarginContainer/Stats" method="_on_game_meepits_changed"]
 [connection signal="button_down" from="LeftPanel/MarginContainer/CenterContainer/ClickButton" to="." method="_on_click_button_button_down"]
+[connection signal="button_down" from="LeftPanel/MarginContainer/CenterContainer/ClickButton" to="LeftPanel/MarginContainer" method="_on_click_button_button_down"]
+[connection signal="button_up" from="LeftPanel/MarginContainer/CenterContainer/ClickButton" to="LeftPanel/MarginContainer" method="_on_click_button_button_up"]
