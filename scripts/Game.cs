@@ -58,8 +58,8 @@ public partial class Game : Control
 	   _saveTimer += delta;
 	   if (_saveTimer >= SaveInterval)
 	   {
-		  _saveTimer = 0;
-		  SaveData();
+		 _saveTimer = 0;
+		 SaveData();
 	   }
 	}
 
@@ -68,7 +68,7 @@ public partial class Game : Control
 	{
 	   if ((long)what == NotificationWMCloseRequest)
 	   {
-		  SaveData();
+		 SaveData();
 	   }
 	}
 	
@@ -85,9 +85,6 @@ public partial class Game : Control
 // Code Cleanliness: Keeps internal game state hidden from other parts of your project that don't need to touch it.
 // Controlled Logic: Forces changes to go through dedicated methods (like an AddMeepits(double amount) function) where you can check rules or trigger UI updates at the same time.
 
-	// Base amount gained per click
-	private double _meepitsPerClick = 1;
-
 	// Passive amount gained per second from upgrades
 	private double _meepitsPerSecond = 0;
 	
@@ -102,13 +99,13 @@ public partial class Game : Control
 	{
 	   var data = new Godot.Collections.Dictionary
 	   {
-		  { "meepits", _meepitCount }
+		 { "meepits", _meepitCount }
 	   };
 
 	   using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
 	   if (file != null)
 	   {
-		  file.StoreVar(data);
+		 file.StoreVar(data);
 	   }
 	}
 
@@ -116,39 +113,39 @@ public partial class Game : Control
 	{
 	   if (FileAccess.FileExists(SavePath))
 	   {
-		  using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Read);
-		  if (file != null)
-		  {
-			 var data = file.GetVar();
+		 using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Read);
+		 if (file != null)
+		 {
+		   var data = file.GetVar();
 
-			 // Equivalent to GDScript: if typeof(data) == TYPE_DICTIONARY
-			 if (data.VariantType == Variant.Type.Dictionary)
-			 {
-				var dict = data.AsGodotDictionary();
-				
-				// Equivalent to GDScript: cookies = data.get("cookies", 0)
-				_meepitCount = dict.ContainsKey("meepits") ? dict["meepits"].AsDouble() : 0;
-				
-				// Refresh UI label upon load
-				EmitSignal(SignalName.MeepitsChanged, _meepitCount);
-			 }
-		  }
+		   // Equivalent to GDScript: if typeof(data) == TYPE_DICTIONARY
+		   if (data.VariantType == Variant.Type.Dictionary)
+		   {
+			 var dict = data.AsGodotDictionary();
+			 
+			 // Equivalent to GDScript: cookies = data.get("cookies", 0)
+			 _meepitCount = dict.ContainsKey("meepits") ? dict["meepits"].AsDouble() : 0;
+			 
+			 // Refresh UI label upon load
+			 EmitSignal(SignalName.MeepitsChanged, _meepitCount);
+		   }
+		 }
 	   }
 	   else
 	   {
-		  SaveData();
+		 SaveData();
 	   }
 	}
 	
 	// MeepitsChanged(newCount: float)
 	private void _on_click_button_button_down()
 	{
-	   _meepitCount += _meepitsPerClick;
+	   _meepitCount += MeepitsPerClick;
 	
 	   // Broadcasts the new total to any connected listeners/UI
 	   EmitSignal(SignalName.MeepitsChanged, _meepitCount);
 
 	   // Equivalent to "emit_signal("cookie_clicked", amount_per_click)"
-	   EmitSignal(SignalName.MeepitClicked, _meepitsPerClick);
+	   EmitSignal(SignalName.MeepitClicked, MeepitsPerClick);
 	}
 }
