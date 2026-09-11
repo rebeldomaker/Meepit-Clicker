@@ -33,7 +33,7 @@ public partial class Animations : MarginContainer
 	}
 
 	// Signal receiver: spawns, floats, fades, and deletes click indicators
-	private void _on_game_cookie_clicked(double amount)
+	private void _on_game_meepit_clicked(double amount)
 	{
 		if (_template == null || _indicators == null) return;
 
